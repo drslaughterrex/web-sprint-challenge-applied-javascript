@@ -20,6 +20,7 @@ const Card = (article) => {
 	// </div>
 	//
 	// console.log(article);
+
 	const div = document.createElement("div");
 	const divH = document.createElement("div");
 	const divA = document.createElement("div");
@@ -34,7 +35,8 @@ const Card = (article) => {
 
 	div.appendChild(divH);
 	div.appendChild(divA);
-	divA.appendChild(img);
+	divA.appendChild(divI);
+	divI.appendChild(img);
 	divA.appendChild(span);
 
 	return div;
@@ -55,15 +57,14 @@ const cardAppender = (selector) => {
 		.get(`https://lambda-times-api.herokuapp.com/articles`)
 		.then((res) => {
 			let articles = Object.values(res.data.articles);
-			console.log(articles);
+			// console.log(articles);
 			articles.forEach((index) => {
 				let newItem = index;
 
-				newItem.forEach((element) => {
-					let card = Card(element);
+				newItem.forEach((index) => {
+					const card = Card(index);
 					cardContainer.appendChild(card);
 				});
-				
 			});
 		})
 

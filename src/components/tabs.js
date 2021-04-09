@@ -1,4 +1,4 @@
-  import axios from "axios";
+import axios from "axios";
 
 const Tabs = (topics) => {
 	// TASK 3
@@ -15,14 +15,13 @@ const Tabs = (topics) => {
 	//   <div class="tab">technology</div>
 	// </div>
 	//
-	
+
 	const div = document.createElement("div");
 	const div2 = document.createElement("div");
 
 	div.classList.add("topics");
 	div2.classList.add("tab");
 
-	topics.appendChild(div);
 	div.appendChild(div2);
 
 	return div;
