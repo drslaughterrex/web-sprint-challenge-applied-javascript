@@ -1,4 +1,4 @@
-import axios from "axios";
+  import axios from "axios";
 
 const Tabs = (topics) => {
 	// TASK 3
@@ -15,7 +15,7 @@ const Tabs = (topics) => {
 	//   <div class="tab">technology</div>
 	// </div>
 	//
-	console.log();
+	
 	const div = document.createElement("div");
 	const div2 = document.createElement("div");
 
@@ -39,13 +39,12 @@ const tabsAppender = (selector) => {
 	const grabTopics = document.querySelector(".topics");
 	axios
 		.get(`https://lambda-times-api.herokuapp.com/topics`)
-		.then((response) => {
-			response.body.forEach((element) => {
-				const createTopic = selector(element);
+		.then((res) => {
+			res.data.topics.forEach((index) => {
+				const createTopic = Tabs(index);
 				grabTopics.appendChild(createTopic);
 			});
 		})
-
 		.catch((error) => {
 			console.log("ERROR!", error);
 		});
