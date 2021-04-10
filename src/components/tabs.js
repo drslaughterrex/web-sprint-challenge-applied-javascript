@@ -17,15 +17,16 @@ const Tabs = (topics) => {
 	//
 
 	const div = document.createElement("div");
-	const div2 = document.createElement("div");
-
 	div.classList.add("topics");
-	div2.classList.add("tab");
 
-	div.appendChild(div2);
+	topics.forEach((topic) => {
 
-	div2.textContent = topics;
-
+		const div2 = document.createElement("div");
+		div2.classList.add("tab");
+		div2.textContent = topic;
+		div.appendChild(div2);
+	});
+	
 	console.log(div);
 	
 	return div;
@@ -34,8 +35,10 @@ const Tabs = (topics) => {
 
 // 
 
+// Tabs(['a', 'b', 'c', 'd', 'e', 'f']);
+
 // input:
-// console.log(Tabs(['javascript', 'bootstrap', 'technology']))
+// Tabs(['javascript', 'bootstrap', 'technology']);
 // expected output:
 // <div class="topics">
 //   <div class="tab">javascript</div>
@@ -44,7 +47,7 @@ const Tabs = (topics) => {
 // </div>
 
 // input:
-// console.log(Tabs(['foo', 'bar', 'baz']))
+//  console.log(Tabs(['foo', 'bar', 'baz']))
 // expected output:
 // <div class="topics">
 //   <div class="tab">foo</div>
@@ -75,10 +78,13 @@ const tabsAppender = (selector) => {
 	axios
 		.get(`https://lambda-times-api.herokuapp.com/topics`)
 		.then((res) => {
-			res.data.topics.forEach((index) => {
-				const createTopic = Tabs(index);
+			// console.log(res.data)
+			// console.log(res.data.topics)
+			const createTopic = Tabs(res.data.topics);
+			// res.data.topics.forEach((index) => {
+			// 	const createTopic = Tabs(index);
 				grabTopics.appendChild(createTopic);
-			});
+			// });
 		})
 	
 		.catch((error) => {
