@@ -13,13 +13,13 @@ const Card = (article) => {
 	//   <div class="headline">{ headline }</div>
 	//   <div class="author">
 	//     <div class="img-container">
-	//       <img src={ authorPhoto }>
+	//       <img src={ authorPhoto } />
 	//     </div>
 	//     <span>By { authorName }</span>
 	//   </div>
 	// </div>
 	//
-	// console.log(article);
+	console.log(article);
 
 	const div = document.createElement("div");
 	const divH = document.createElement("div");
@@ -38,6 +38,16 @@ const Card = (article) => {
 	divA.appendChild(divI);
 	divI.appendChild(img);
 	divA.appendChild(span);
+
+	divH.textContent = article.headline;
+	img.src = article.authorPhoto;
+	span.textContent = article.authorName;
+
+	div.addEventListener("click", (e) => {
+		console.log(article.headline);
+	});
+
+	console.log(div)
 
 	return div;
 };
