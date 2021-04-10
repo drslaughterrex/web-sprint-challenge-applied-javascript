@@ -24,9 +24,44 @@ const Tabs = (topics) => {
 
 	div.appendChild(div2);
 
+	div2.textContent = topics;
+
+	console.log(div);
+	
 	return div;
+	
 };
 
+// 
+
+// input:
+// console.log(Tabs(['javascript', 'bootstrap', 'technology']))
+// expected output:
+// <div class="topics">
+//   <div class="tab">javascript</div>
+//   <div class="tab">bootstrap</div>
+//   <div class="tab">technology</div>
+// </div>
+
+// input:
+// console.log(Tabs(['foo', 'bar', 'baz']))
+// expected output:
+// <div class="topics">
+//   <div class="tab">foo</div>
+//   <div class="tab">bar</div>
+//   <div class="tab">baz</div>
+// </div>
+
+// input:
+// console.log(Tabs([]))
+// expected output:
+//  <div class="topics"></div>
+
+// input:
+// console.log(Tabs())
+// expected output:
+//  error (wrong number of arguments)
+	
 const tabsAppender = (selector) => {
 	// TASK 4
 	// ---------------------
@@ -35,7 +70,8 @@ const tabsAppender = (selector) => {
 	// Find the array of topics inside the response, and create the tabs using the Tabs component.
 	// Append the tabs to the element in the DOM that matches the selector passed to the function.
 	//
-	const grabTopics = document.querySelector(".topics");
+	const grabTopics = document.querySelector(selector);
+
 	axios
 		.get(`https://lambda-times-api.herokuapp.com/topics`)
 		.then((res) => {
@@ -44,6 +80,7 @@ const tabsAppender = (selector) => {
 				grabTopics.appendChild(createTopic);
 			});
 		})
+	
 		.catch((error) => {
 			console.log("ERROR!", error);
 		});
